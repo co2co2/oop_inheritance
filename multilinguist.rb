@@ -52,3 +52,46 @@ class Multilinguist
     json_response['translationText']
   end
 end
+
+class MathGenius < Multilinguist
+
+  def report_total (numbers_in_array)
+    sum = 0
+    numbers_in_array.each {|n| sum += n}
+    return "#{say_in_local_language("The total is")} #{sum}"
+  end
+end
+me = MathGenius.new
+puts me.report_total([23,45,676,34,5778,4,23,5465])
+me.travel_to("Nepal")
+puts me.report_total([6,3,6,68,455,4,467,57,4,534])
+me.travel_to("Japan")
+puts me.report_total([23,45,676,34,5778,4,23,5465])
+
+class Quote_collector < Multilinguist
+
+  def initialize
+    @favourite_quotes = []
+  end
+
+  def favourite_quotes
+    @favourite_quotes
+  end
+
+  def add_new_quote (new_quote)
+    @favourite_quotes << new_quote
+  end
+
+  def share_quote
+   popup = "#{@favourite_quotes.sample}"
+    "#{say_in_local_language(popup)}"
+  end
+end
+
+you = Quote_collector.new
+you.add_new_quote ("Be yourself; everyone else is already taken.")
+you.add_new_quote("I can resist everything except temptation.")
+you.add_new_quote("You are free, and that is why you are lost.")
+puts you.favourite_quotes
+you.travel_to("Cuba")
+puts you.share_quote
